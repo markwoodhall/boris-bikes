@@ -13,6 +13,7 @@
   :target-path "target/%s"
   :main boris-bikes.app
   :min-lein-version "2.0.0"
+  :uberjar-name "boris-bikes.jar"
   :profiles {:uberjar {:aot :all}
              :dev {:dependencies [[reloaded.repl "0.2.3"]
                                   [org.clojure/tools.namespace "0.2.11"]]
