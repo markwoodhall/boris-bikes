@@ -14,7 +14,11 @@
 (defn bikepoints
   [[lat lon radius number]]
   {:methods {:get
-             {:parameters {:query {(s/optional-key :lat) Double (s/optional-key :lon) Double (s/optional-key :radius) Double (s/optional-key :number) Double}}
+             {:parameters
+              {:query {(s/optional-key :lat) Double
+                       (s/optional-key :lon) Double
+                       (s/optional-key :radius) Double
+                       (s/optional-key :number) Double}}
               :produces #{"application/json" "text/html"}
               :response (fn [ctx] (let [lat (or (get-in ctx [:parameters :query :lat]) lat)
                                         lon (or (get-in ctx [:parameters :query :lon]) lon)
