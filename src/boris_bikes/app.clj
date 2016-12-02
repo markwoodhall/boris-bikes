@@ -34,7 +34,7 @@
 
 (defn -main
   [& args]
-  (let [system (new-system {:port 3080})]
+  (let [system (new-system {:port (Integer/parseInt (System/getenv "PORT"))})]
     (component/start system)
     (loop [input (read-line)]
       (if (= input "Q")
