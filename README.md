@@ -16,14 +16,16 @@ by distance.
 
 The `/bikepoints` endpoint is "protected" by Basic authentication using a hardcoded username (mark) and password (changeme).
 
+You can try it out like so:
+
 ```sh
-curl -H "Accept: application/json" http://mark:changeme@localhost:3080/bikepoints
+curl -H "Accept: application/json" http://mark:changeme@46.101.12.41:37181/bikepoints
 ```
 
 The "api" supports content negotiation, you can ask for html instead of json.
 
 ```sh
-curl -H "Accept: text/html" http://mark:changeme@localhost:3080/bikepoints
+curl -H "Accept: text/html" http://mark:changeme@46.101.12.41:37181/bikepoints
 ```
 
 You can also supply optional parameters `lat`, `lon`, `radius` and `number` to the `/bikepoints` endpoint.
@@ -36,11 +38,11 @@ number: The number of bikepoints to return
 ```
 
 ```sh
-curl -H "Accept: application/json" http://mark:changeme@localhost:3080/bikepoints\?lat\=51.5212073\&lon\=-0.0740046\&radius\=10000\&number\=20
+curl -H "Accept: application/json" http://mark:changeme@46.101.12.41:37181/bikepoints\?lat\=51.5212073\&lon\=-0.0740046\&radius\=10000\&number\=20
 ```
 
 Or request html again.
 
 ```sh
-curl -H "Accept: text/html" http://mark:changeme@localhost:3080/bikepoints\?lat\=51.5212073\&lon\=-0.0740046
+curl -H "Accept: text/html" http://mark:changeme@46.101.12.41:37181/bikepoints\?lat\=51.5212073\&lon\=-0.0740046
 ```
