@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -jar target/boris-bikes.jar
+web: java $JVM_OPTS -jar target/uberjar/boris-bikes.jar
