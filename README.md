@@ -1,36 +1,46 @@
-# borris-bikes
+# boris-bikes
 
-FIXME: description
+This "api" exposes a very simple yada resource that uses the [BikePoint API](https://api.tfl.gov.uk/#BikePoint) to
+return either a html or json representation of the 5 nearest bikepoints to a specified location.
 
-## Installation
-
-Download from http://example.com/FIXME.
 
 ## Usage
 
-FIXME: explanation
+    $ PORT=8080 java -jar boris-bikes.jar
 
-    $ java -jar borris-bikes-0.1.0-standalone.jar [args]
+## Endpoint
 
-## Options
+The "api" exposes a single endpoint `/bikepoints`. Calling it with no parameters will return the 5 nearest bikepoints
+to [Leyton](https://www.google.co.uk/maps/place/Leyton,+London/@51.5619513,-0.0306485,14z/data=!4m5!3m4!1s0x48761d997519ec8b:0xe04da9391dd9878b!8m2!3d51.561948!4d-0.013139) sorted
+by distance.
 
-FIXME: listing of options this app accepts.
+The `/bikepoints` endpoint is "protected" by Basic authentication using a hardcoded username (mark) and password (changeme).
 
-## Examples
+```sh
+curl -H "Accept: application/json" http://mark:changeme@localhost:3080/bikepoints
+```
 
-...
+The "api" supports content negotiation, you can ask for html instead of json.
 
-### Bugs
+```sh
+curl -H "Accept: text/html" http://mark:changeme@localhost:3080/bikepoints
+```
 
-...
+You can also supply optional parameters `lat`, `lon`, `radius` and `number` to the `/bikepoints` endpoint.
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+```
+lat: The latitude position at which to find nearest bikepoints
+lon: The longitude position at which to find nearest bikepoints
+radius: The radius out from lat and lon
+number: The number of bikepoints to return
+```
 
-## License
+```sh
+curl -H "Accept: application/json" http://mark:changeme@localhost:3080/bikepoints\?lat\=51.5212073\&lon\=-0.0740046\&radius\=10000\&number\=20
+```
 
-Copyright © 2016 FIXME
+Or request html again.
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+```sh
+curl -H "Accept: text/html" http://mark:changeme@localhost:3080/bikepoints\?lat\=51.5212073\&lon\=-0.0740046
+```

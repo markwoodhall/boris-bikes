@@ -12,12 +12,14 @@
                                 {:user user :roles #{"bikepoints/view"}}))}})
 
 (defn bikepoints
-  [[lat lon]]
+  [[lat lon radius number]]
   {:methods {:get
-             {:parameters {:query {(s/optional-key :lat) Double (s/optional-key :lon) Double}}
+             {:parameters {:query {(s/optional-key :lat) Double (s/optional-key :lon) Double (s/optional-key :radius) Double (s/optional-key :number) Double}}
               :produces #{"application/json" "text/html"}
               :response (fn [ctx] (let [lat (or (get-in ctx [:parameters :query :lat]) lat)
-                                        lon (or (get-in ctx [:parameters :query :lon]) lon)]
-                                    (->> (boris-bikes lat lon 5000)
-                                         (closest-n-bikepoints 5)
+                                        lon (or (get-in ctx [:parameters :query :lon]) lon)
+                                        radius (or (get-in ctx [:parameters :query :radius]) radius)
+                                        number (or (get-in ctx [:parameters :query :number]) number)]
+                                    (->> (boris-bikes lat lon radius)
+                                         (closest-n-bikepoints number)
                                          (map ->bikepoint))))}}})

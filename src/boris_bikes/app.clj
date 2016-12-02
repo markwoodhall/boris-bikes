@@ -12,10 +12,10 @@
     (let [srv (listener
                 ["/"
                  [
-                  ["bikepoints" (-> [51.5649218 -0.0233642]
-                               bikepoints
-                               (merge access-control)
-                               resource)]
+                  ["bikepoints" (-> [51.5649218 -0.0233642 5000 5]
+                                    bikepoints
+                                    (merge access-control)
+                                    resource)]
                   ]]
                 {:port port})]
       (assoc this :server srv)))
